@@ -1,15 +1,15 @@
 name: "PR: Test"
 
-on:
+on: #trigger
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened] #Eventos disponiveis na documentação
 
 jobs:
-  tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/setup-node@v2
-      - uses: actions/checkout@v2
+  tests: # nome/identificador do job pode ser usado como input
+    runs-on: ubuntu-latest #maquina virtual disponibilizada pelo gitHub
+    steps: #conjunto de actions que serão realizados
+      - uses: actions/setup-node@v2 #instala o node na maquina Ubuntu
+      - uses: actions/checkout@v2 # usa o checkout para acessar oc codigo na maquina virtual
       - name: Install dependencies
         run: yarn install
       - run: yarn test
@@ -18,3 +18,4 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+# Verificar o MArketPlace de actions => - uses: <autor>/<action>@<version>
